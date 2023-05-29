@@ -4,6 +4,10 @@ from typing import Optional
 import psycopg2
 from psycopg2.extras import RealDictCursor
 import time
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 app = FastAPI()
 
@@ -17,8 +21,8 @@ class Post(BaseModel):
 
 while True:
     try:
-        conn = psycopg2.connect(host = "localhost", database = "backendproject", user = "postgres", password = "Alejandro.46", 
-                                cursor_factory = RealDictCursor)
+        conn = psycopg2.connect(host = "localhost", database = os.getenv("DATABASE"), user = os.getenv("USER"), 
+                                password = os.getenv("PASSWORD"), cursor_factory = RealDictCursor)
         cursor = conn.cursor()
         print("Database connection was succesfull")
         break
