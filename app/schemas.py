@@ -6,8 +6,10 @@ class PostBase(BaseModel):
     content: str 
     published: bool = True
 
+
 class PostCreate(PostBase):
     pass
+
 
 class PostOut(PostBase):
     id: int    
@@ -21,6 +23,7 @@ class UserCreate(BaseModel):
     email: EmailStr
     password: str 
 
+
 class UserOut(BaseModel):
     id: int
     email: EmailStr
@@ -28,3 +31,8 @@ class UserOut(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str 

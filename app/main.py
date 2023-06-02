@@ -8,7 +8,7 @@ import time
 from sqlalchemy.orm import Session
 from app import models, schemas, utils
 from app.database import engine, get_db
-from app.routers import post, user
+from app.routers import post, user, auth
 
 from dotenv import load_dotenv
 import os
@@ -34,7 +34,7 @@ while True:
     
 app.include_router(post.router)
 app.include_router(user.router)
-
+app.include_router(auth.router)
 
 
 
