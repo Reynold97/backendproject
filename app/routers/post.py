@@ -57,7 +57,7 @@ def delete_post(id: int, db: Session = Depends(database.get_db), user_id: int = 
     return Response(status_code= status.HTTP_204_NO_CONTENT)
 
 
-@router.put("/posts/{id}", response_model= schemas.PostOut)
+@router.put("/{id}", response_model= schemas.PostOut)
 def update_post(id: int, updated_post: schemas.PostCreate, db: Session = Depends(database.get_db), user_id: int = Depends(oauth2.get_current_user)):
     #cursor.execute("""UPDATE posts SET title = %s, content = %s, published = %s WHERE id = %s RETURNING * """, 
     #               (updated_post.title, updated_post.content, updated_post.published, str(id),))
