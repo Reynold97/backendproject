@@ -4,6 +4,10 @@ from sqlalchemy.orm import sessionmaker
 import os
 from dotenv import load_dotenv
 
+import psycopg2
+from psycopg2.extras import RealDictCursor
+import time
+
 load_dotenv()
 
 engine = create_engine(os.getenv("SQLALCHEMY_DATABASE_URL"))
@@ -19,3 +23,16 @@ def get_db():
         yield db
     finally:
         db.close()
+
+
+#while True:
+#    try:
+#        conn = psycopg2.connect(host = "localhost", database = os.getenv("DATABASE"), user = os.getenv("USER"), 
+#                                password = os.getenv("PASSWORD"), cursor_factory = RealDictCursor)
+#        cursor = conn.cursor()
+#        print("Database connection was succesfull")
+#        break
+#    except Exception as error:
+#        print("Database connection failed")
+#        print("Error: ", error)
+#        time.sleep(2)
