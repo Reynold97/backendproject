@@ -30,7 +30,7 @@ def get_spec_post(id: int, db: Session = Depends(database.get_db), current_user:
 
 
 @router.post("/", status_code= status.HTTP_201_CREATED, response_model= schemas.PostOut)
-def create_posts(post: schemas.PostCreate, db: Session = Depends(database.get_db), current_user: int = Depends(oauth2.get_current_user)):
+def create_post(post: schemas.PostCreate, db: Session = Depends(database.get_db), current_user: int = Depends(oauth2.get_current_user)):
     #cursor.execute("""INSERT INTO posts (title, content, published) VALUES (%s, %s,%s) RETURNING * """, 
     #               (post.title, post.content, post.published))
     #new_post = cursor.fetchone()
