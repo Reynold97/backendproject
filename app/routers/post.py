@@ -23,11 +23,14 @@ def get_posts(db: Session = Depends(database.get_db), current_user: int = Depend
     return posts 
 
 
-@router.get("/{id}", response_model= schemas.PostOut)
+@router.get("/{id}", response_model= schemas.PostOut2)
 def get_spec_post(id: int, db: Session = Depends(database.get_db), current_user: int = Depends(oauth2.get_current_user)):
     #cursor.execute("""SELECT * FROM posts WHERE id = %s""", (str(id),))
     #post = cursor.fetchone()
-    post = db.query(models.Post).filter(models.Post.id == id).first()    
+    #post = db.query(models.Post).filter(models.Post.id == id).first()  
+    post =  db.query(models.Post, func.count(models.Vote.post_id).label("votes")).join(
+        models.Vote, models.Vote.post_id == models.Post.id, isouter = True).group_by(models.Post.id).filter(
+        models.Post.id == id).first()
     if not post:
         raise HTTPException(status_code= status.HTTP_404_NOT_FOUND, detail= f"Post {id} not found")
     return post
