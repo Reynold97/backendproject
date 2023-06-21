@@ -37,6 +37,14 @@ class PostOut(PostBase):
         orm_mode = True
 
 
+class PostOut2(BaseModel):
+    Post: PostOut
+    votes: int
+
+    class Config:
+        orm_mode = True
+        
+
 class UserLogin(BaseModel):
     email: EmailStr
     password: str 
