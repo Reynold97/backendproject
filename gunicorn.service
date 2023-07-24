@@ -8,7 +8,7 @@ Group=serveradmin
 WorkingDirectory=/home/serveradmin/backendproject/src/
 Environment="PATH=/home/serveradmin/backendproject/venv/bin"
 EnvironmentFile=/home/serveradmin/.env
-ExecStart=/home/sserveradmin/backendproject/venv/bin/gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app --bind 0.0.0.0:8000
+ExecStart=/home/serveradmin/backendproject/venv/bin/gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app --bind 0.0.0.0:8000
 
 [Install]
 WantedBy=multi-user.target
