@@ -29,7 +29,7 @@ app.include_router(vote.router)
 
 app.get("/")
 def sayhi():
-    return ("Hello World !!!!")
+    return {"message": "Hello World !!!!"}
 
 
 
