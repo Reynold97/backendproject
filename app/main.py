@@ -27,7 +27,7 @@ app.include_router(auth.router)
 app.include_router(vote.router)
 
 
-app.get("/")
+@app.get("/")
 def sayhi():
     return {"message": "Hello World !!!!"}
 
